@@ -398,3 +398,6 @@ DOMAIN-SUFFIX,redditstatic.com
 DOMAIN-SUFFIX,reddituploads.com
 DOMAIN-SUFFIX,reddituploads.com.cdn-cf.behance.net
 DOMAIN-SUFFIX,reddituploads.com.cdn-cf.dropbox.com
+
+# 阿里云盘
+PROCESS-NAME，/Applications/aDrive.app/Contents/MacOS/aDrive
