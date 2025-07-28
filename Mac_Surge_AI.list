@@ -400,5 +400,7 @@ DOMAIN-SUFFIX,reddituploads.com.cdn-cf.behance.net
 DOMAIN-SUFFIX,reddituploads.com.cdn-cf.dropbox.com
 
 #linuxdo
-
 DOMAIN-SUFFIX,linux.do
+
+#augment
+DOMAIN-KEYWORD,augment
