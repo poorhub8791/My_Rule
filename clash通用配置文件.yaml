@@ -1,0 +1,738 @@
+# clash 配置文件
+
+# 混合端口
+mixed-port: 7890
+
+# 允许局域网连接
+allow-lan: true
+
+# 绑定地址
+bind-address: '*'
+
+# 运行模式
+mode: rule
+
+# 日志级别
+log-level: info
+
+# IPv6 支持
+ipv6: false
+
+# DNS 配置
+dns:
+  enable: true
+  ipv6: false
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - '+.lan'
+    - '+.local'
+    - 'localhost.ptlogin2.qq.com'
+  nameserver:
+    - 223.6.6.6
+    - 223.5.5.5
+    - 119.29.29.29
+  fallback:
+    - https://1.1.1.1/dns-query
+    - https://8.8.8.8/dns-query
+
+# 机场订阅
+proxy-providers:
+  AP1:
+    type: http
+    url: "https://clash0811-main.rss-node.com/sub?target=clash&interval=129600&filename=Hitun&url=https%3A%2F%2Frss-node.com%2Flink%2Fl9uto2jhHIWgrO8c%3Fmu%3D1" # 修改为你的机场订阅地址
+    interval: 86400
+    path: ./profiles/proxies/AP1.yaml
+    health-check:
+      enable: true
+      interval: 300
+      url: http://www.gstatic.com/generate_204
+
+# 代理组
+proxy-groups:
+  - name: 🤖 AI
+    type: select
+    proxies:
+      - 🔃 自动选择
+      - 🇺🇸 美国节点
+      - 🇭🇰 香港节点
+      - 🇯🇵 日本节点
+      - 🇨🇳 台湾节点
+      - 🇸🇬 新加坡节点
+      - 🇰🇷 韩国节点
+      - 🌍 其他节点
+      - DIRECT
+    use:
+      - AP1
+
+  - name: 🎥 YouTube
+    type: select
+    proxies:
+      - 🔃 自动选择
+      - 🇺🇸 美国节点
+      - 🇭🇰 香港节点
+      - 🇯🇵 日本节点
+      - 🇨🇳 台湾节点
+      - 🇸🇬 新加坡节点
+      - 🇰🇷 韩国节点
+      - 🌍 其他节点
+      - DIRECT
+    use:
+      - AP1
+
+  - name: 🎥 Emby
+    type: select
+    proxies:
+      - 🔃 自动选择
+      - 🇺🇸 美国节点
+      - 🇭🇰 香港节点
+      - 🇯🇵 日本节点
+      - 🇨🇳 台湾节点
+      - 🇸🇬 新加坡节点
+      - 🇰🇷 韩国节点
+      - 🌍 其他节点
+      - DIRECT
+    use:
+      - AP1
+
+  - name: 🎥 TikTok
+    type: select
+    proxies:
+      - 🔃 自动选择
+      - 🇺🇸 美国节点
+      - 🇭🇰 香港节点
+      - 🇯🇵 日本节点
+      - 🇨🇳 台湾节点
+      - 🇸🇬 新加坡节点
+      - 🇰🇷 韩国节点
+      - 🌍 其他节点
+      - DIRECT
+    use:
+      - AP1
+
+  - name: 🎥 bilibili
+    type: select
+    proxies:
+      - 🔃 自动选择
+      - 🇺🇸 美国节点
+      - 🇭🇰 香港节点
+      - 🇯🇵 日本节点
+      - 🇨🇳 台湾节点
+      - 🇸🇬 新加坡节点
+      - 🇰🇷 韩国节点
+      - 🌍 其他节点
+      - DIRECT
+    use:
+      - AP1
+
+  - name: 🎥 Netflix
+    type: select
+    proxies:
+      - 🔃 自动选择
+      - 🇺🇸 美国节点
+      - 🇭🇰 香港节点
+      - 🇯🇵 日本节点
+      - 🇨🇳 台湾节点
+      - 🇸🇬 新加坡节点
+      - 🇰🇷 韩国节点
+      - 🌍 其他节点
+      - DIRECT
+    use:
+      - AP1
+
+  - name: 🎥 Disney+
+    type: select
+    proxies:
+      - 🔃 自动选择
+      - 🇺🇸 美国节点
+      - 🇭🇰 香港节点
+      - 🇯🇵 日本节点
+      - 🇨🇳 台湾节点
+      - 🇸🇬 新加坡节点
+      - 🇰🇷 韩国节点
+      - 🌍 其他节点
+      - DIRECT
+    use:
+      - AP1
+
+  - name: 📲 Telegram
+    type: select
+    proxies:
+      - 🔃 自动选择
+      - 🇺🇸 美国节点
+      - 🇭🇰 香港节点
+      - 🇯🇵 日本节点
+      - 🇨🇳 台湾节点
+      - 🇸🇬 新加坡节点
+      - 🇰🇷 韩国节点
+      - 🌍 其他节点
+      - DIRECT
+    use:
+      - AP1
+
+  - name: 📲 Twitter
+    type: select
+    proxies:
+      - 🔃 自动选择
+      - 🇺🇸 美国节点
+      - 🇭🇰 香港节点
+      - 🇯🇵 日本节点
+      - 🇨🇳 台湾节点
+      - 🇸🇬 新加坡节点
+      - 🇰🇷 韩国节点
+      - 🌍 其他节点
+      - DIRECT
+    use:
+      - AP1
+
+  - name: 📲 Instagram
+    type: select
+    proxies:
+      - 🔃 自动选择
+      - 🇺🇸 美国节点
+      - 🇭🇰 香港节点
+      - 🇯🇵 日本节点
+      - 🇨🇳 台湾节点
+      - 🇸🇬 新加坡节点
+      - 🇰🇷 韩国节点
+      - 🌍 其他节点
+      - DIRECT
+    use:
+      - AP1
+
+  - name: 📲 Facebook
+    type: select
+    proxies:
+      - 🔃 自动选择
+      - 🇺🇸 美国节点
+      - 🇭🇰 香港节点
+      - 🇯🇵 日本节点
+      - 🇨🇳 台湾节点
+      - 🇸🇬 新加坡节点
+      - 🇰🇷 韩国节点
+      - 🌍 其他节点
+      - DIRECT
+    use:
+      - AP1
+
+  - name: 🎵 Spotify
+    type: select
+    proxies:
+      - 🔃 自动选择
+      - 🇺🇸 美国节点
+      - 🇭🇰 香港节点
+      - 🇯🇵 日本节点
+      - 🇨🇳 台湾节点
+      - 🇸🇬 新加坡节点
+      - 🇰🇷 韩国节点
+      - 🌍 其他节点
+      - DIRECT
+    use:
+      - AP1
+
+  - name: ⏱️ Speedtest
+    type: select
+    proxies:
+      - 🔃 自动选择
+      - 🇺🇸 美国节点
+      - 🇭🇰 香港节点
+      - 🇯🇵 日本节点
+      - 🇨🇳 台湾节点
+      - 🇸🇬 新加坡节点
+      - 🇰🇷 韩国节点
+      - 🌍 其他节点
+      - DIRECT
+    use:
+      - AP1
+
+  - name: 🔍 GitHub
+    type: select
+    proxies:
+      - 🔃 自动选择
+      - 🇺🇸 美国节点
+      - 🇭🇰 香港节点
+      - 🇯🇵 日本节点
+      - 🇨🇳 台湾节点
+      - 🇸🇬 新加坡节点
+      - 🇰🇷 韩国节点
+      - 🌍 其他节点
+      - DIRECT
+    use:
+      - AP1
+
+  - name: 🔍 Google
+    type: select
+    proxies:
+      - 🔃 自动选择
+      - 🇺🇸 美国节点
+      - 🇭🇰 香港节点
+      - 🇯🇵 日本节点
+      - 🇨🇳 台湾节点
+      - 🇸🇬 新加坡节点
+      - 🇰🇷 韩国节点
+      - 🌍 其他节点
+      - DIRECT
+    use:
+      - AP1
+
+  - name: 🍎 Apple
+    type: select
+    proxies:
+      - 🔃 自动选择
+      - 🇺🇸 美国节点
+      - 🇭🇰 香港节点
+      - 🇯🇵 日本节点
+      - 🇨🇳 台湾节点
+      - 🇸🇬 新加坡节点
+      - 🇰🇷 韩国节点
+      - 🌍 其他节点
+      - DIRECT
+    use:
+      - AP1
+
+  - name: 💻 Microsoft
+    type: select
+    proxies:
+      - 🔃 自动选择
+      - 🇺🇸 美国节点
+      - 🇭🇰 香港节点
+      - 🇯🇵 日本节点
+      - 🇨🇳 台湾节点
+      - 🇸🇬 新加坡节点
+      - 🇰🇷 韩国节点
+      - 🌍 其他节点
+      - DIRECT
+    use:
+      - AP1
+
+  - name: 🎮Steam
+    type: select
+    proxies:
+      - 🔃 自动选择
+      - 🇺🇸 美国节点
+      - 🇭🇰 香港节点
+      - 🇯🇵 日本节点
+      - 🇨🇳 台湾节点
+      - 🇸🇬 新加坡节点
+      - 🇰🇷 韩国节点
+      - 🌍 其他节点
+      - DIRECT
+    use:
+      - AP1
+
+  - name: 🎮 Xbox
+    type: select
+    proxies:
+      - 🔃 自动选择
+      - 🇺🇸 美国节点
+      - 🇭🇰 香港节点
+      - 🇯🇵 日本节点
+      - 🇨🇳 台湾节点
+      - 🇸🇬 新加坡节点
+      - 🇰🇷 韩国节点
+      - 🌍 其他节点
+      - DIRECT
+    use:
+      - AP1
+
+  - name: 🎮 PlayStation
+    type: select
+    proxies:
+      - 🔃 自动选择
+      - 🇺🇸 美国节点
+      - 🇭🇰 香港节点
+      - 🇯🇵 日本节点
+      - 🇨🇳 台湾节点
+      - 🇸🇬 新加坡节点
+      - 🇰🇷 韩国节点
+      - 🌍 其他节点
+      - DIRECT
+    use:
+      - AP1
+
+  - name: 🎮 Nintendo
+    type: select
+    proxies:
+      - 🔃 自动选择
+      - 🇺🇸 美国节点
+      - 🇭🇰 香港节点
+      - 🇯🇵 日本节点
+      - 🇨🇳 台湾节点
+      - 🇸🇬 新加坡节点
+      - 🇰🇷 韩国节点
+      - 🌍 其他节点
+      - DIRECT
+    use:
+      - AP1
+
+  - name: 🔞 Porn
+    type: select
+    proxies:
+      - 🔃 自动选择
+      - 🇺🇸 美国节点
+      - 🇭🇰 香港节点
+      - 🇯🇵 日本节点
+      - 🇨🇳 台湾节点
+      - 🇸🇬 新加坡节点
+      - 🇰🇷 韩国节点
+      - 🌍 其他节点
+      - DIRECT
+    use:
+      - AP1
+
+  - name: 🌍 国外网站
+    type: select
+    proxies:
+      - 🔃 自动选择
+      - 🇺🇸 美国节点
+      - 🇭🇰 香港节点
+      - 🇯🇵 日本节点
+      - 🇨🇳 台湾节点
+      - 🇸🇬 新加坡节点
+      - 🇰🇷 韩国节点
+      - 🌍 其他节点
+      - DIRECT
+    use:
+      - AP1
+
+  - name: 🐟 漏网之鱼
+    type: select
+    proxies:
+      - 🔃 自动选择
+      - 🇺🇸 美国节点
+      - 🇭🇰 香港节点
+      - 🇯🇵 日本节点
+      - 🇨🇳 台湾节点
+      - 🇸🇬 新加坡节点
+      - 🇰🇷 韩国节点
+      - 🌍 其他节点
+      - DIRECT
+    use:
+      - AP1
+
+  - name: 🔃 自动选择
+    type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 100
+    use:
+      - AP1
+
+  - name: 🇺🇸 美国节点
+    type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 100
+    filter: '(?i)🇺🇸|美国|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States'
+    use:
+      - AP1
+
+  - name: 🇭🇰 香港节点
+    type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 100
+    filter: '(?i)🇭🇰|香港|HK|Hong'
+    use:
+      - AP1
+
+  - name: 🇯🇵 日本节点
+    type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 100
+    filter: '(?i)🇯🇵|日本|川日|东京|大阪|泉日|埼玉|JP|Japan'
+    use:
+      - AP1
+
+  - name: 🇨🇳 台湾节点
+    type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 100
+    filter: '(?i)🇨🇳|🇹🇼|TW|台湾'
+    use:
+      - AP1
+
+  - name: 🇸🇬 新加坡节点
+    type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 100
+    filter: '(?i)🇸🇬|新加坡|狮|SG|Singapore'
+    use:
+      - AP1
+
+  - name: 🇰🇷 韩国节点
+    type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 100
+    filter: '(?i)🇰🇷|韩国|首尔|KR|Korea'
+    use:
+      - AP1
+
+  - name: 🌍 其他节点
+    type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 100
+    filter: '^(?!.*(🇺🇸|美国|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States|🇭🇰|香港|HK|Hong|🇯🇵|日本|川日|东京|大阪|泉日|埼玉|JP|Japan|🇨🇳|台湾|🇹🇼|TW|🇸🇬|新加坡|狮|SG|Singapore|🇰🇷|韩国|首尔|KR|Korea)).*$'
+    use:
+      - AP1
+
+# 规则集
+rule-providers:
+  reject:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt"
+    path: ./ruleset/reject.yaml
+    interval: 86400
+
+  bilibili:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/BiliBili/BiliBili.yaml"
+    path: ./ruleset/bilibili.yaml
+    interval: 86400
+
+  tiktok:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/TikTok/TikTok.yaml"
+    path: ./ruleset/tiktok.yaml
+    interval: 86400
+
+  emby:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Emby/Emby.yaml"
+    path: ./ruleset/emby.yaml
+    interval: 86400
+
+  netflix:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Netflix/Netflix.yaml"
+    path: ./ruleset/netflix.yaml
+    interval: 86400
+
+  disney:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Disney/Disney.yaml"
+    path: ./ruleset/disney.yaml
+    interval: 86400
+
+  spotify:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Spotify/Spotify.yaml"
+    path: ./ruleset/spotify.yaml
+    interval: 86400
+
+  speedtest:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Speedtest/Speedtest.yaml"
+    path: ./ruleset/speedtest.yaml
+    interval: 86400
+
+  github:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/GitHub/GitHub.yaml"
+    path: ./ruleset/github.yaml
+    interval: 86400
+
+  telegram:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Telegram/Telegram.yaml"
+    path: ./ruleset/telegram.yaml
+    interval: 86400
+
+  youtube:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/YouTube/YouTube.yaml"
+    path: ./ruleset/youtube.yaml
+    interval: 86400
+
+  google:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Google/Google.yaml"
+    path: ./ruleset/google.yaml
+    interval: 86400
+
+  twitter:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Twitter/Twitter.yaml"
+    path: ./ruleset/twitter.yaml
+    interval: 86400
+
+  instagram:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Instagram/Instagram.yaml"
+    path: ./ruleset/instagram.yaml
+    interval: 86400
+
+  facebook:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Facebook/Facebook.yaml"
+    path: ./ruleset/facebook.yaml
+    interval: 86400
+
+  steam:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Steam/Steam.yaml"
+    path: ./ruleset/steam.yaml
+    interval: 86400
+
+  apple:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Apple/Apple.yaml"
+    path: ./ruleset/apple.yaml
+    interval: 86400
+
+  microsoft:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Microsoft/Microsoft.yaml"
+    path: ./ruleset/microsoft.yaml
+    interval: 86400
+
+  xbox:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Xbox/Xbox.yaml"
+    path: ./ruleset/xbox.yaml
+    interval: 86400
+
+  playstation:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/PlayStation/PlayStation.yaml"
+    path: ./ruleset/playstation.yaml
+    interval: 86400
+
+  nintendo:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Nintendo/Nintendo.yaml"
+    path: ./ruleset/nintendo.yaml
+    interval: 86400
+
+  porn:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Porn/Porn.yaml"
+    path: ./ruleset/porn.yaml
+    interval: 86400
+
+  openai:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/OpenAI/OpenAI.yaml"
+    path: ./ruleset/openai.yaml
+    interval: 86400
+
+  proxy:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt"
+    path: ./ruleset/proxy.yaml
+    interval: 86400
+
+  direct:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/direct.txt"
+    path: ./ruleset/direct.yaml
+    interval: 86400
+
+  private:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/private.txt"
+    path: ./ruleset/private.yaml
+    interval: 86400
+
+  cncidr:
+    type: http
+    behavior: ipcidr
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/cncidr.txt"
+    path: ./ruleset/cncidr.yaml
+    interval: 86400
+
+  lancidr:
+    type: http
+    behavior: ipcidr
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt"
+    path: ./ruleset/lancidr.yaml
+    interval: 86400
+
+# 规则
+rules:
+  # 去广告
+  - RULE-SET,reject,REJECT
+  
+  # 流媒体
+  - RULE-SET,bilibili,🎥 bilibili
+  - RULE-SET,tiktok,🎥 TikTok
+  - RULE-SET,emby,🎥 Emby
+  - RULE-SET,netflix,🎥 Netflix
+  - RULE-SET,disney,🎥 Disney+
+  - RULE-SET,youtube,🎥 YouTube
+  - RULE-SET,spotify,🎵 Spotify
+  
+  # 社交媒体
+  - RULE-SET,telegram,📲 Telegram
+  - RULE-SET,twitter,📲 Twitter
+  - RULE-SET,instagram,📲 Instagram
+  - RULE-SET,facebook,📲 Facebook
+  
+  # 工具
+  - RULE-SET,speedtest,⏱️ Speedtest
+  - RULE-SET,github,🔍 GitHub
+  - RULE-SET,google,🔍 Google
+  
+  # 科技公司
+  - RULE-SET,apple,🍎 Apple
+  - RULE-SET,microsoft,💻 Microsoft
+  
+  # 游戏
+  - RULE-SET,steam,🎮Steam
+  - RULE-SET,xbox,🎮 Xbox
+  - RULE-SET,playstation,🎮 PlayStation
+  - RULE-SET,nintendo,🎮 Nintendo
+  
+  # 成人内容
+  - RULE-SET,porn,🔞 Porn
+  
+  # AI
+  - RULE-SET,openai,🤖 AI
+  
+  # 国外网站
+  - RULE-SET,proxy,🌍 国外网站
+  
+  # 国内网站
+  - RULE-SET,direct,DIRECT
+  
+  # 私有网络
+  - RULE-SET,private,DIRECT
+  
+  # IP规则
+  - RULE-SET,lancidr,DIRECT,no-resolve
+  - RULE-SET,cncidr,DIRECT,no-resolve
+  
+  # 最终规则
+  - GEOIP,CN,DIRECT
+  - MATCH,🐟 漏网之鱼
