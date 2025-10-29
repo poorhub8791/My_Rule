@@ -1,0 +1,378 @@
+#DNS
+dns:
+  enable: true
+  ipv6: false
+  enhanced-mode: fake-ip
+  # MC如需使用，7874改成23453，再复制粘贴到MC的DNS编辑里
+  listen: :7874
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter-mode: whitelist
+  respect-rules: false
+  prefer-h3: false
+  fake-ip-filter:
+    - 'rule-set:gfw'
+  nameserver:
+    - 223.6.6.6
+    - 223.5.5.5 
+    - 119.29.29.29
+  
+port: 7890
+proxies:
+
+# 机场配置模块
+provider_config: &provider_config {"type": "http","interval": 86400,"user-agent": "clash","health-check": {"enable": true,"url": "http://latency-test.skk.moe/endpoint","interval": 300}}
+
+proxy-providers:
+  # 第一个机场
+  AP1:
+    url: "" #修改你的机场1订阅地址
+    <<: *provider_config
+    override:
+      additional-prefix: "[AP1]"
+      
+
+# 分组配置模块
+standard_proxies: &standard_proxies {"type": "select", "proxies": ["🔃 自动选择", "🇺🇸 美国节点", "🇭🇰 香港节点", "🇯🇵 日本节点", "🇨🇳 台湾节点", "🇸🇬 新加坡节点", "🇰🇷 韩国节点", "🌍 其他节点", "DIRECT"], "include-all": true}
+
+# 节点配置模块
+filter_proxies: &filter_proxies {"type": "url-test", "url": "http://latency-test.skk.moe/endpoint", "interval": 300, "tolerance": 100, "include-all": true}
+
+proxy-groups:
+  - name: 🤖 AI
+    <<: *standard_proxies
+
+  - name: 🎥 YouTube
+    <<: *standard_proxies  
+      
+  - name: 🎥 Emby
+    <<: *standard_proxies
+
+  - name: 🎥 TikTok
+    <<: *standard_proxies
+    
+  - name: 🎥 bilibili
+    <<: *standard_proxies
+      
+  - name: 🎥 Netflix
+    <<: *standard_proxies
+
+  - name: 🎥 Disney+
+    <<: *standard_proxies
+
+  - name: 📲 Telegram
+    <<: *standard_proxies
+      
+  - name: 📲 Twitter
+    <<: *standard_proxies
+
+  - name: 📲 Instagram
+    <<: *standard_proxies
+
+  - name: 📲 Facebook
+    <<: *standard_proxies
+
+  - name: 🎵 Spotify
+    <<: *standard_proxies
+
+  - name: ⏱️ Speedtest
+    <<: *standard_proxies
+
+  - name: 🔍 GitHub
+    <<: *standard_proxies
+
+  - name: 🔍 Google
+    <<: *standard_proxies
+
+  - name: 🍎 Apple
+    <<: *standard_proxies
+
+  - name: 💻 Microsoft
+    <<: *standard_proxies
+
+  - name: 🎮Steam
+    <<: *standard_proxies
+
+  - name: 🎮 Xbox
+    <<: *standard_proxies
+
+  - name: 🎮 PlayStation
+    <<: *standard_proxies
+
+  - name: 🎮 Nintendo
+    <<: *standard_proxies
+
+  - name: 🔞 Porn
+    <<: *standard_proxies
+    
+  - name: 🌍 国外网站
+    <<: *standard_proxies
+
+  - name: 🐟 漏网之鱼
+    <<: *standard_proxies
+
+  - name: 🔃 自动选择
+    <<: *filter_proxies
+    
+  - name: 🇺🇸 美国节点
+    <<: *filter_proxies
+    filter: '^(?=.*((?i)🇺🇸|美国|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|(\b(US|United States)\b))).*$'
+
+  - name: 🇭🇰 香港节点
+    <<: *filter_proxies
+    filter: '^(?=.*((?i)🇭🇰|香港|(\b(HK|Hong)\b))).*$'
+
+  - name: 🇯🇵 日本节点
+    <<: *filter_proxies
+    filter: '^(?=.*((?i)🇯🇵|日本|川日|东京|大阪|泉日|埼玉|(\b(JP|Japan)\b))).*$'
+
+  - name: 🇨🇳 台湾节点
+    <<: *filter_proxies
+    filter: '^(?=.*((?i)🇨🇳|🇹🇼|TW|台湾)).*$'
+
+  - name: 🇸🇬 新加坡节点
+    <<: *filter_proxies
+    filter: '^(?=.*((?i)🇸🇬|新加坡|狮|(\b(SG|Singapore)\b))).*$'
+      
+  - name: 🇰🇷 韩国节点
+    <<: *filter_proxies
+    filter: '^(?=.*((?i)🇰🇷|韩国|首尔|(\b(KR|Korea)\b))).*$'
+
+  - name: 🌍 其他节点
+    <<: *filter_proxies
+    filter: '^(?!.*(🇺🇸|美国|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States|🇭🇰|香港|HK|Hong|🇯🇵|日本|川日|东京|大阪|泉日|埼玉|JP|Japan|🇨🇳|台湾|🇹🇼|TW|🇸🇬|新加坡|狮|SG|Singapore|🇰🇷|韩国|首尔|KR|Korea)).*$'
+
+# ruleSet配置模块
+rule-anchor:
+  ip: &ip {type: http, interval: 43200, behavior: ipcidr, format: mrs}
+  domain: &domain {type: http, interval: 43200, behavior: domain, format: mrs}
+rule-providers:
+  bilibili:
+    <<: *domain
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/bilibili.mrs
+
+  cn:
+    <<: *domain
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs
+
+  tiktok:
+    <<: *domain
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/tiktok.mrs
+
+  emby:
+    <<: *domain
+    url: https://github.com/666OS/rules/raw/release/mihomo/domain/Emby.mrs
+  
+  netflix:
+    <<: *domain
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/netflix.mrs
+  
+  disney:
+    <<: *domain
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/disney.mrs
+
+  spotify:
+    <<: *domain
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/spotify.mrs
+
+  speedtest:
+    <<: *domain
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/speedtest.mrs
+  
+  github:
+    <<: *domain
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/github.mrs
+
+  telegram:
+    <<: *domain
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.mrs
+
+  youtube:
+    <<: *domain
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.mrs
+
+  google:
+    <<: *domain
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.mrs
+
+  twitter:
+    <<: *domain
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/twitter.mrs
+
+  instagram:
+    <<: *domain
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/instagram.mrs
+
+  facebook:
+    <<: *domain
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/facebook.mrs
+
+  steam@cn:
+    <<: *domain
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/steam@cn.mrs
+
+  steam:
+    <<: *domain
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/steam.mrs
+
+  apple@cn:
+    <<: *domain
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple@cn.mrs
+
+  apple:
+    <<: *domain
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple.mrs
+
+  microsoft@cn:
+    <<: *domain
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/microsoft@cn.mrs
+
+  microsoft:
+    <<: *domain
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/microsoft.mrs
+
+  xbox:
+    <<: *domain
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/xbox.mrs
+
+  playstation:
+    <<: *domain
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/playstation.mrs
+
+  nintendo@cn:
+    <<: *domain
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/nintendo@cn.mrs
+
+  nintendo:
+    <<: *domain
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/nintendo.mrs
+
+  category-porn:
+    <<: *domain
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-porn.mrs
+
+  category-ai-!cn:
+    <<: *domain
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-!cn.mrs
+
+  geolocation-!cn:
+    <<: *domain
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs
+    
+  category-ads-all:
+    <<: *domain
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ads-all.mrs
+
+  gfw:
+    <<: *domain
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/gfw.mrs
+
+  private_ip:
+    <<: *ip
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo-lite/geoip/private.mrs
+
+  apple_ip:
+    <<: *ip
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo-lite/geoip/apple.mrs
+
+  google_ip:
+    <<: *ip
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo-lite/geoip/google.mrs
+
+  telegram_ip:
+    <<: *ip
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo-lite/geoip/telegram.mrs
+
+  netflix_ip:
+    <<: *ip
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo-lite/geoip/netflix.mrs
+
+  twitter_ip:
+    <<: *ip
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo-lite/geoip/twitter.mrs
+
+  emby_ip:
+    <<: *ip
+    url: https://github.com/666OS/rules/raw/release/mihomo/ip/Emby.mrs
+
+  cn_ip:
+    <<: *ip
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo-lite/geoip/cn.mrs
+  
+  ad_ip:
+    <<: *ip
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/ad.mrs
+
+rules:
+  # 去广告
+  - RULE-SET,category-ads-all,REJECT
+  - RULE-SET,ad_ip,REJECT,no-resolve
+  # 🎥 bilibili
+  - RULE-SET,bilibili,🎥 bilibili
+  # 🍎 Apple
+  - RULE-SET,apple@cn,DIRECT
+  - RULE-SET,apple,🍎 Apple
+  # 🎥 TikTok
+  - RULE-SET,tiktok,🎥 TikTok
+  # 🎥 Emby
+  - RULE-SET,emby,🎥 Emby
+  # 🎥 Netflix
+  - RULE-SET,netflix,🎥 Netflix
+  # 🎥 Disney+
+  - RULE-SET,disney,🎥 Disney+
+  # 🎵 Spotify
+  - RULE-SET,spotify,🎵 Spotify
+  # ⏱️ Speedtest
+  - RULE-SET,speedtest,⏱️ Speedtest
+  # 🔍 GitHub
+  - RULE-SET,github,🔍 GitHub
+  # 📲 Telegram
+  - RULE-SET,telegram,📲 Telegram
+  # 🎥 YouTube
+  - RULE-SET,youtube,🎥 YouTube
+  # 🔍 Google
+  - RULE-SET,google,🔍 Google
+  # 📲 Twitter
+  - RULE-SET,twitter,📲 Twitter
+  # 📲 Instagram
+  - RULE-SET,instagram,📲 Instagram
+  # 📲 Facebook
+  - RULE-SET,facebook,📲 Facebook
+  # 🎮Steam
+  - RULE-SET,steam@cn,DIRECT
+  - RULE-SET,steam,🎮Steam
+  # 💻 Microsoft
+  - RULE-SET,microsoft@cn,DIRECT
+  - RULE-SET,microsoft,💻 Microsoft
+  # 🎮 Xbox
+  - RULE-SET,xbox,🎮 Xbox
+  # 🎮 PlayStation
+  - RULE-SET,playstation,🎮 PlayStation
+  # 🎮 Nintendo
+  - RULE-SET,nintendo@cn,DIRECT
+  - RULE-SET,nintendo,🎮 Nintendo
+  # 🔞 Porn
+  - RULE-SET,category-porn,🔞 Porn
+  # 🤖 AI
+  - RULE-SET,category-ai-!cn,🤖 AI
+  # 🌍 国外网站
+  - RULE-SET,geolocation-!cn,🌍 国外网站
+  # 国内网站
+  - RULE-SET,cn,DIRECT
+  # private_ip
+  - RULE-SET,private_ip,DIRECT,no-resolve
+  # apple_ip
+  - RULE-SET,apple_ip,🍎 Apple,no-resolve
+  # google_ip
+  - RULE-SET,google_ip,🔍 Google,no-resolve
+  # telegram_ip
+  - RULE-SET,telegram_ip,📲 Telegram,no-resolve
+  # netflix_ip
+  - RULE-SET,netflix_ip,🎥 Netflix,no-resolve
+  # twitter_ip
+  - RULE-SET,twitter_ip,📲 Twitter,no-resolve
+  # emby_ip
+  - RULE-SET,emby_ip,🎥 Emby,no-resolve
+  # cn_ip
+  - RULE-SET,cn_ip,DIRECT,no-resolve
+  # 🐟 漏网之鱼
+  - MATCH,🐟 漏网之鱼
