@@ -176,7 +176,13 @@ DOMAIN-SUFFIX,toutiao.com
 # qqmusic
 URL-REGEX,qqmusic\.qq\.com
 URL-REGEX,music\.tc\.qq\.com
-DOMAIN-SUFFIX,y.qq.com
-DOMAIN-SUFFIX,p2ptun.qq.com
+DOMAIN-SUFFIX,v.qq.com
+DOMAIN-KEYWORD,qqmusic
 DOMAIN-KEYWORD,tencentmusic
+DOMAIN-SUFFIX,qqmusic.qq.com
+DOMAIN-SUFFIX,dldir1.qq.com
+DOMAIN-SUFFIX,oth.eve.mdt.qq.com
+DOMAIN-SUFFIX,y.gtimg.cn
+DOMAIN-SUFFIX,gj.qq
+DOMAIN-SUFFIX,sspai.com
 PROCESS-NAME,*QQMusic*
