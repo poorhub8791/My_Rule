@@ -40,7 +40,7 @@ dns:
 proxy-providers:
   AP1:
     type: http
-    url: "https://clash0811-main.rss-node.com/sub?target=clash&interval=129600&filename=Hitun&url=https%3A%2F%2Frss-node.com%2Flink%2Fl9uto2jhHIWgrO8c%3Fmu%3D1" # 修改为你的机场订阅地址
+    url: "" # 修改为你的机场订阅地址
     interval: 86400
     path: ./profiles/proxies/AP1.yaml
     health-check:
