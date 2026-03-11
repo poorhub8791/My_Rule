@@ -1,5 +1,5 @@
 # qqmusic
-DOMAIN-SUFFIX,qq
+DOMAIN-SUFFIX,qq.com
 URL-REGEX,qqmusic\.qq\.com
 URL-REGEX,music\.tc\.qq\.com
 DOMAIN-SUFFIX,v.qq.com
